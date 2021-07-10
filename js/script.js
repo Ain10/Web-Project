@@ -45,9 +45,7 @@ function register(username, password, cpword, fname, lname, email, captchaInput)
 			document.getElementById("test").innerHTML = xhr.responseText;
 		}
 	};
-
-
-
+	
 	var registerEmailEntry = $('#registerEmail').val();
 	//var registerEmailValid = false;
 	var registerEmailObject = $('#registerEmail');
@@ -144,7 +142,7 @@ function createCaptcha(){
 		else i--;
 	}
 
-	captchaCont = document.createElement("captchaContainer");
+	captchaCont = document.createElement("canvas");
 	captchaCont.id = "captcha";
 	captchaCont.width = 120;
 	captchaCont.height = 50;
@@ -154,16 +152,6 @@ function createCaptcha(){
 	
 	code = captcha.join("");
 	document.getElementById("captcha").appendChild(captchaCont);
-}
-function validateCaptcha(){
-	event.preventDefault();
-	debugger
-	if (document.getElementById(captchaInput).value == code){
-		alert("captcha is valid")
-	}else{
-		alert("Invalid Captch. try Again");
-		createCaptcha();
-	}
 }
 
 

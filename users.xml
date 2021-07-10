@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <users>
-	<user username="jord">
-		<password>jords</password>
+	<user username="test">
+		<password>1234</password>
 		<firstName>asdasd</firstName>
 		<lastName>dasda</lastName>
 		<email>try@email.com</email>
@@ -12,5 +12,4 @@
 		<lastName>zxczxcz</lastName>
 		<email>try2@email.com</email>
 	</user>
-<user username="gord"><password>asdw</password><firstName>wasdw</firstName><lastName>asdwdas</lastName><email>asdawdsaf</email></user>
-<user username="jordsss"><password>asdasd</password><firstName>asdasda</firstName><lastName>asdasdas</lastName><email>asdasdasdasdad</email></user><user username="koko"><password>asdas</password><firstName>asdasd</firstName><lastName>asdasd</lastName><email>asdasda</email></user><user username="asdasdw"><password>fasf</password><firstName>fasfafsafasf</firstName><lastName>fwee</lastName><email>asdaw</email></user><user username="qwertt"><password>qweqweqwe</password><firstName>asdasdasda</firstName><lastName>dasdaw</lastName><email>asdwa</email></user><user username="adwasda"><password>was</password><firstName>asdwda</firstName><lastName>weweq</lastName><email>awdqwe</email></user><user username="qweqweqwe"><password>sad</password><firstName>fas</firstName><lastName>saf</lastName><email>asda</email></user><user username="try1"><password>1234</password><firstName>gn</firstName><lastName>das</lastName><email>asda</email></user><user username="hghgh"><password>jj</password><firstName>jkljkl</firstName><lastName>jkljkl</lastName><email>jkljkl</email></user><user username="12343"><password>12</password><firstName>qwe</firstName><lastName>asd</lastName><email>zxvc</email></user><user username="dawdawd"><password>das</password><firstName>qwe</firstName><lastName>qwe</lastName><email>qwe@email.com</email></user></users>
+</users>
