@@ -1,79 +1,46 @@
 <?php
-    session_start();
-    include("xmlDOMRequire.php");
+$xml = new domdocument("1.0");
+$xml->load("users.xml");
+
+$account = $xml->getElementsByTagName("user");
+
+$xml->preserveWhiteSpace = false;
+$xml->formatOutput = true;
 
 
+$username = $_GET["username"] ?? "";
+$password = $_GET["password"] ?? "";
+$fName = $_GET["fname"] ?? "";
+$lName = $_GET["lname"] ?? "";
+$email = $_GET["email"] ?? "";
 
-    if(isset($_GET['user'])){
-        $userN = $_GET['user'];
-        foreach($users as $user){
-            $username = $user->getAttribute("username");
-            if($username == $userN){
-                echo "Username is Already Taken";
-                exit();
-            }
-        }
-        echo "";
+$userExist = FALSE;
 
+foreach($account as $accounts){
+    if ($username == $accounts->getAttribute('username')){
+        $userExist =TRUE;
+        break;
     }
-    if(isset($_GET['firstName'])){
-        $firstN = $_GET['firstName'];
-        $lastN = $_GET['lastName'];
-        foreach($users as $user){
-            $first = $user->getElementsbyTagName("firstName")[0]->nodeValue;
-            $last = $user->getElementsbyTagName("lastName")[0]->nodeValue;
-            if($firstN == $first && $lastN == $last){
-                echo "Account for this person has already been created";
-                exit();
-            }
-        }
-        echo "";
-    }
+}
 
-    if(isset($_GET['registerUser'])){
-        $username = $_GET['registerUser'];
-        $registerFirst = $_GET['firstN'];
-        $registerLast = $_GET['lastN'];
-        $pass = $_GET['pass'];
+if($userExist){
+    echo "username_exists";
+}else{
+    $user = $xml->createElement("user");
+    $password = $xml->createElement("password", $password);
+    $fName = $xml->createElement("firstName", $fName);
+    $lName = $xml->createElement("lastName", $lName);
+    $email = $xml->createElement("email", $email);
 
-        $newUser = $xml->createElement('user');
-        $newPassword = $xml->createElement('password',$pass);
-        $newFirstName = $xml->createElement('firstName',$registerFirst);
-        $newLastName = $xml->createElement('lastName',$registerLast);
-        $newUser->setAttribute('username', $username);
+    $user->setAttribute("username", $username);
+    $user->appendChild($password);
+    $user->appendChild($fName);
+    $user->appendChild($lName);
+    $user->appendChild($email);
 
-        $newUser->appendChild($newPassword);
-        $newUser->appendChild($newFirstName);
-        $newUser->appendChild($newLastName);
+    $xml->getElementsByTagName("users")->item(0)->appendChild($user);
+    $xml->save("users.xml");
 
-        $xml->getElementsByTagName('users')[0]->appendChild($newUser);
-        $xml->save('users.xml');
-        echo "none";
-    }
 
-    
-    if(isset($_GET['logout'])){
-        $discern = $_GET['logout'];   
-        echo "<script>alert('$discern')</script>";
-
-        if($discern=="true"){
-            foreach($users as $i=>$user){
-                if($user->getAttribute("username") == $_SESSION['username']){
-    
-                    $status = $xml->createElement("status", "inactive");
-                    $oldStatus = $user->getElementsByTagName("status")->item(0);
-    
-                    $user->replaceChild($status, $oldStatus);
-                    $xml->save("users.xml");
-                    break;
-                }
-            }
-            $_SESSION = array();
-            session_destroy();
-            session_unset();
-            header("Refresh:0; url=index.php");
-            // header("Location: index.php");
-            // header("Location: viewMovies.php");
-        }
-    }
+}
 ?>
