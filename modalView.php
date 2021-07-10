@@ -1,24 +1,32 @@
 <?php
     require_once("movieSort.php");
-    $movieCode = $_GET["movieCode"];
+    $gameC = $_GET["gameCode"];
 
-    foreach($movies as $movie){
-        $movieID = $movie->getAttribute("movieCode");
-        $title = $movie->getElementsbyTagName("title")[0]->nodeValue;
-        $director = $movie->getElementsbyTagName("director")[0]->nodeValue;
-        $genre = $movie->getElementsbyTagName("genre")[0]->nodeValue;
-        $dateOfRelease = $movie->getElementsbyTagName("dateOfRelease")[0]->nodeValue;
-        $imagePath = $movie->getElementsbyTagName("imagePath")[0]->nodeValue;
+    foreach($games as $game){
+        $gameCode = $game->getAttribute("gameCode");
+        $title = $game->getElementsbyTagName("title")[0]->nodeValue;
+        $developer = $game->getElementsbyTagName("developer")[0]->nodeValue;
+        $publisher = $game->getElementsbyTagName("publisher")[0]->nodeValue;
+        $genre = $game->getElementsbyTagName("genre")[0]->nodeValue;
+        $price = $game->getElementsbyTagName("price")[0]->nodeValue;
+        $dateOfRelease = $game->getElementsbyTagName("dateOfRelease")[0]->nodeValue;
+        $description = $game->getElementsbyTagName("description")[0]->nodeValue;
+        $imagePath = $game->getElementsbyTagName("imagePath")[0]->nodeValue;
         $all = [];
-        if($movieCode == $movieID){
-            $all[0]=$movieID;
+        if($gameCode == $gameC){
+            $all[0]=$gameCode;
+            echo "<script> console.log('$gameCode') </script>";
             $all[1]=$title;
-            $all[2]=$director;
-            $all[3]=$genre;
-            $all[4]=$dateOfRelease;
-            $all[5]=$imagePath;
-            $all[6]="block";
+            $all[2]=$developer;
+            $all[3]=$publisher;
+            $all[4]=$genre;
+            $all[5]=$price;
+            $all[6]=$dateOfRelease;
+            $all[7]=$description;
+            $all[8]=$imagePath;
+            $all[9]="block";
             echo implode("|", $all);
+            echo "hello";
             break;
         }
     }

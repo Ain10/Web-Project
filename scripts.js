@@ -113,52 +113,27 @@ function hide(){
 }
 
 
-function displayModal(movieCode){
-    {
-    if(movieCode=="100001"){
-        d.getElementById("modal").style.top = "43%";
-    }else if(movieCode=="100002"){
-        d.getElementById("modal").style.top = "45%";
-    }
-    else if(movieCode=="100003"){
-        d.getElementById("modal").style.top = "47%";
-    }
-    else if(movieCode=="100004"){
-        d.getElementById("modal").style.top = "50%";
-    }
-    else if(movieCode=="100005"){
-        d.getElementById("modal").style.top = "52%";
-    }
-    else if(movieCode=="100006"){
-        d.getElementById("modal").style.top = "54%";
-    }
-    else if(movieCode=="100007"){
-        d.getElementById("modal").style.top = "57%";
-    }
-    else if(movieCode=="100008"){
-        d.getElementById("modal").style.top = "59%";
-    }
-    else if(movieCode=="100009"){
-        d.getElementById("modal").style.top = "61%";
-    }
-    else if(movieCode=="100010"){
-        d.getElementById("modal").style.top = "63%";
-    }
-    }
+function displayModal(gameCode){
     xhr.onreadystatechange = () =>{
         if(xhr.readyState == 4 && xhr.status ==200){
             data = xhr.responseText.split("|");
-            d.getElementById("modalImage").src = data[5];
-            d.getElementById("movieCode").innerHTML = data[0];
-            d.getElementById("movieTitle").innerHTML = data[1];
-            d.getElementById("movieDirector").innerHTML = data[2];
-            d.getElementById("movieGenre").innerHTML = data[3];
-            d.getElementById("movieDateOfRelease").innerHTML = data[4];
-            d.getElementById("modal").style.display = data[6];
+            if(data != null){
+                d.getElementById("gameCode").innerHTML = data[0];
+                d.getElementById("gameTitle").innerHTML = data[1];
+                d.getElementById("gameDeveloper").innerHTML = data[2];
+                d.getElementById("gamePublisher").innerHTML = data[3];
+                d.getElementById("gameGenre").innerHTML = data[4];
+                d.getElementById("gamePrice").innerHTML = data[5];
+                d.getElementById("DateOfRelease").innerHTML = data[6];
+                d.getElementById("gameDescription").innerHTML = data[7];
+                d.getElementById("modalImage").src = data[8];
+                d.getElementById("modal").style.display = "block";
+            }
         }
     };
 
-    xhr.open("GET","modalView.php?movieCode="+movieCode,true);
+    xhr.open("GET","modalView.php?gameCode="+ gameCode,true);
+
     xhr.send();
 }
 

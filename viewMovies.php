@@ -34,31 +34,50 @@
         </div>
 
 
-<table onmouseout="hideModal()" id="tableMovies"><tr><th>Movie Code</th><th>Title</th><th>Director</th><th>Genre</th><th>Date of Release</th></tr>
+<table onmouseout="hideModal()" id="tableMovies"><tr><th>Movie Code</th><th>Title</th><th>Developer</th><th>Publisher</th><th>Genre</th><th>Price</th><th>Date of Release</th><th>Image</th></tr>
     <?php 
-        foreach($sortMovie as $movie){
-            $id=$movie['movieCode'];
-            $title=$movie['title'];
-            $director=$movie['director'];
-            $genre=$movie['genre'];
-            $dateOfRelease=$movie['dateOfRelease'];
-            echo "<tr onmouseover='displayModal($id)' id='trHover'><td>$id</td><td>$title</td><td>$director</td><td>$genre</td><td>$dateOfRelease</td></tr>";
+        foreach($sortGame as $game){
+            $id=$game['gameCode'];
+            $title=$game['title'];
+            $developer=$game['developer'];
+            $publisher=$game['publisher'];
+            $genre=$game['genre'];
+            $price=$game['price'];
+            $dateOfRelease=$game['dateOfRelease'];
+            $imagePath=$game['imagePath'];
+
+            echo "<tr onmouseover='displayModal($id)' id='trHover'>
+            <td>$id</td>
+            <td>$title</td>
+            <td>$developer</td>
+            <td>$publisher</td>
+            <td>$genre</td>
+            <td>$price</td>
+            <td>$dateOfRelease</td>
+            <td>$imagePath</td>
+            </tr>";
         }
     ?>
     </table>
     <div id="modal" style="display: none;">
         
         <img src="" id="modalImage"><br>
-        <p><strong>Movie Code</strong></p>
-        <p id="movieCode"></p>
-        <p><strong>Movie Title</strong></p>
-        <p id="movieTitle"></p>
-        <p><strong>Movie Director</strong></p>
-        <p id="movieDirector"></p>
-        <p><strong>Movie Genre</strong></p>
-        <p id="movieGenre"></p>
-        <p><strong>Movie Date of Release</strong>
-        <p id="movieDateOfRelease"></p>
+        <p><strong>Game Code</strong></p>
+        <p id="gameCode"></p>
+        <p><strong>Game Title</strong></p>
+        <p id="gameTitle"></p>
+        <p><strong>Game Director</strong></p>
+        <p id="gameDeveloper"></p>
+        <p><strong>Game Publisher</strong></p>
+        <p id="gamePublisher"></p>
+        <p><strong>Genre</strong></p>
+        <p id="gameGenre"></p>
+        <p><strong>Price</strong></p>
+        <p id="gamePrice"></p>
+        <p><strong>Date of Release</strong>
+        <p id="DateOfRelease"></p>
+        <p><strong>Description</strong>
+        <p id="gameDescription"></p>
     </div>
     <!-- Activity 5   -->
     <div id="divAllUser">
