@@ -15,7 +15,6 @@
         $all = [];
         if($gameCode == $gameC){
             $all[0]=$gameCode;
-            echo "<script> console.log('$gameCode') </script>";
             $all[1]=$title;
             $all[2]=$developer;
             $all[3]=$publisher;

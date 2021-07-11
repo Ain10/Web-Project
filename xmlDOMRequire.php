@@ -1,5 +1,5 @@
 <?php
-        $xml = new DOMDocument();
-        $xml->load("users.xml");
-        $users = $xml->getElementsbyTagName("user");
+        $xmlUser = new DOMDocument();
+        $xmlUser->load("users.xml");
+        $users = $xmlUser->getElementsbyTagName("user");
 ?>

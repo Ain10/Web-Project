@@ -33,8 +33,23 @@
             <button onclick="logout()" id="LogoutButton">Logout</button>
         </div>
 
+<div id="displayCart">
+    <h2>Cart</h2>
+    <div id="Cartlist">
+    
+    </div>
+    <div id="checkOut">
+        <h3>Price</h3>
+        <button id="checkOutButton">Check out</button>
+    </div>
+</div>
+<div id="displayWishlist">
+    <h2>Wishlist</h2>
+    <div id="wishList">
 
-<table onmouseout="hideModal()" id="tableMovies"><tr><th>Movie Code</th><th>Title</th><th>Developer</th><th>Publisher</th><th>Genre</th><th>Price</th><th>Date of Release</th><th>Image</th></tr>
+    </div>
+</div>
+<table  id="tableMovies"><tr><th>Game Code</th><th>Title</th><th>Developer</th><th>Publisher</th><th>Genre</th><th>Price</th><th>Date of Release</th><th>Image</th></tr>
     <?php 
         foreach($sortGame as $game){
             $id=$game['gameCode'];
@@ -46,7 +61,7 @@
             $dateOfRelease=$game['dateOfRelease'];
             $imagePath=$game['imagePath'];
 
-            echo "<tr onmouseover='displayModal($id)' id='trHover'>
+            echo "<tr onclick='displayModal($id)' id='trHover'>
             <td>$id</td>
             <td>$title</td>
             <td>$developer</td>
@@ -59,8 +74,8 @@
         }
     ?>
     </table>
-    <div id="modal" style="display: none;">
-        
+    <div id="modal" style="display: none;" onclick="hideModal()">
+        <input id='gameCodeHolder' type='hidden' value="">
         <img src="" id="modalImage"><br>
         <p><strong>Game Code</strong></p>
         <p id="gameCode"></p>
@@ -78,6 +93,8 @@
         <p id="DateOfRelease"></p>
         <p><strong>Description</strong>
         <p id="gameDescription"></p>
+        <button id='addtoCartButton' onclick="addToCart()">Add to Cart</button>
+        <button id='addToWishList' onclick="addtoWishList()">Add to Wishlist</button>
     </div>
     <!-- Activity 5   -->
     <div id="divAllUser">
@@ -127,6 +144,12 @@
 
     </div>
 </div>
+
+
+
+
+
+
 
 </body>
 </html>

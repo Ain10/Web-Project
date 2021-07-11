@@ -137,10 +137,11 @@ strong, label{
 #tableMovies{
     width: 40%;
     height: 30%;
-    margin-top: 5%;
+    margin-top: -20%;
     margin-left: 20%;
     vertical-align:middle;
     text-align: center;
+    position:initial;
 }
 
 #modal{
@@ -378,4 +379,29 @@ strong, label{
     width: 300px;
     margin-top: 8px;
     margin-left: 2%;
+}
+
+#displayCart{
+ background-color: red;
+ width: 15%;
+ height: 40%;
+ overflow-y: scroll;
+ position: relative;
+}
+
+#displayWishlist{
+background-color: blue;
+width: 15%;
+height: 40%;
+overflow-y: scroll;
+position: absolute;
+}
+
+#checkOut{
+    bottom: 0;
+}
+
+#cartImage{
+    width: 30%;
+    height: 30%;
 }

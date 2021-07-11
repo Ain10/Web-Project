@@ -18,9 +18,9 @@ if(isset($_FILES['pic'])){
             foreach($users as $user){
                 if($user->getAttribute("username") == $_SESSION['username']){
                     $oldpic = $user->getElementsByTagName("profilePic")->item(0);
-                    $newpic = $xml->createElement("profilePic", $newFileName);
+                    $newpic = $xmlUser->createElement("profilePic", $newFileName);
                     $user->replaceChild($newpic, $oldpic);
-                    $xml->save("users.xml");
+                    $xmlUser->save("users.xml");
                     break;
                 }
             }

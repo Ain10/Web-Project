@@ -1,6 +1,7 @@
 <?php
     session_start();
     include("xmlDOMRequire.php");
+    include('xmlConnector.php');
 
 
 
@@ -36,35 +37,52 @@
         $registerLast = $_GET['lastN'];
         $pass = $_GET['pass'];
 
-        $newUser = $xml->createElement('user');
-        $newPassword = $xml->createElement('password',$pass);
-        $newFirstName = $xml->createElement('firstName',$registerFirst);
-        $newLastName = $xml->createElement('lastName',$registerLast);
+        $newUser = $xmlUser->createElement('user');
+        $newPassword = $xmlUser->createElement('password',$pass);
+        $newFirstName = $xmlUser->createElement('firstName',$registerFirst);
+        $newLastName = $xmlUser->createElement('lastName',$registerLast);
+        $profilePic = $xmlUser->createElement('profilePic','default.png');
+        $status = $xmlUser->createElement('status','inactive');
         $newUser->setAttribute('username', $username);
 
         $newUser->appendChild($newPassword);
         $newUser->appendChild($newFirstName);
         $newUser->appendChild($newLastName);
+        $newUser->appendChild($profilePic);
+        $newUser->appendChild($status);
 
-        $xml->getElementsByTagName('users')[0]->appendChild($newUser);
-        $xml->save('users.xml');
+        $xmlUser->getElementsByTagName('users')[0]->appendChild($newUser);
+        $xmlUser->save('users.xml');
+        //new Cart
+        $newUserCart = $xmlCarts->createElement('cart');
+        $newUserCart->setAttribute('username',$username);
+
+        $xmlCarts->getElementsByTagName('carts')[0]->append($newUserCart);
+        $xmlCarts->save('cart.xml');
+        //new Wishlist
+
+        $newUserWishlist = $xmlWish->createElement('wish');
+        $newUserWishlist->setAttribute('username',$username);
+
+        $xmlWish->getElementsByTagName('wishes')[0]->append($newUserWishlist);
+        $xmlWish->save('wishlist.xml');
+
         echo "none";
     }
 
     
     if(isset($_GET['logout'])){
         $discern = $_GET['logout'];   
-        echo "<script>alert('$discern')</script>";
-
+        echo $discern;
         if($discern=="true"){
             foreach($users as $i=>$user){
                 if($user->getAttribute("username") == $_SESSION['username']){
     
-                    $status = $xml->createElement("status", "inactive");
+                    $status = $xmlUser->createElement("status", "inactive");
                     $oldStatus = $user->getElementsByTagName("status")->item(0);
     
                     $user->replaceChild($status, $oldStatus);
-                    $xml->save("users.xml");
+                    $xmlUser->save("users.xml");
                     break;
                 }
             }

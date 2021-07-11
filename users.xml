@@ -5,7 +5,7 @@
         <firstName>Ian Dominique</firstName>
         <lastName>de Jesus</lastName>
         <profilePic>d8bbcbac0e4041a7ca7036263bdc9543.png</profilePic>
-        <status>active</status>
+        <status>inactive</status>
     </user>
     <user username="practice">
         <password>p</password>
@@ -19,6 +19,12 @@
         <firstName>sam firstname</firstName>
         <lastName>sam lastname</lastName>
         <profilePic>default.png</profilePic>
-        <status>inactive</status>
+        <status>active</status>
     </user>
-</users>
+    <user username="test">
+        <password>test</password>
+        <firstName>test</firstName>
+        <lastName>test</lastName>
+        <profilePic>1d6a5324d67bde564dc8948bf6e94d31.jpg</profilePic>
+        <status>inactive</status>
+</user></users>

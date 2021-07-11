@@ -16,11 +16,11 @@
             $_SESSION['lastN'] = $user->getElementsByTagName("lastName")->item(0)->nodeValue;
             $_SESSION['profilePic'] = $user->getElementsByTagName("profilePic")->item(0)->nodeValue;
 
-            $status = $xml->createElement("status", "active");
+            $status = $xmlUser->createElement("status", "active");
             $oldStatus = $user->getElementsByTagName("status")->item(0);
 
             $user->replaceChild($status, $oldStatus);
-            $xml->save("users.xml");
+            $xmlUser->save("users.xml");
             exit();
         }
     }

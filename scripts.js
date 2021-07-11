@@ -119,6 +119,7 @@ function displayModal(gameCode){
             data = xhr.responseText.split("|");
             if(data != null){
                 d.getElementById("gameCode").innerHTML = data[0];
+                d.getElementById("gameCodeHolder").value = data[0];
                 d.getElementById("gameTitle").innerHTML = data[1];
                 d.getElementById("gameDeveloper").innerHTML = data[2];
                 d.getElementById("gamePublisher").innerHTML = data[3];
@@ -235,8 +236,13 @@ window.onload = function(){
     fetchActiveUsers();
     setInterval(function(){
         fetchActiveUsers();
+        
     }, 6000);
+    
+    
 }
+
+
 
 //change profile pic
 function editProfilePic(){
@@ -257,7 +263,7 @@ function fetchProfilePic(){
     xhr.open("GET", "profileGet.php?getPicture=", true);
     xhr.send();
 }
-//CHRIS PALAGAY NUNG POST IMAGE
+
 function saveImage(){
     sendForm = new FormData();
     getElementPicture = document.getElementById("pic").files[0];
@@ -287,4 +293,102 @@ function exitModal(){
 
 function displayChosenImage(){
     pic = document.getElementById("pic").files[0];
+}
+
+
+/////////////////////////ADDING FROM WISHLIST AND CART
+
+function addToCart(){
+    let cart = document.getElementById("gameCodeHolder").value;
+
+    xhr.onreadystatechange = ()=>{
+        if(xhr.readyState == 4 && xhr.status == 200)
+        // ADD SWEET ALERT FOR NOTIFICATION
+            hello ="";
+
+        }
+       
+    xhr.open("GET", "addGameToCart.php?addG="+cart, true);
+    xhr.send();
+}
+
+//ADD TO CART FROM WISHLIST
+function addToCartFromWishList(item){
+    let cart = document.getElementById("gameCodeHolder").value;
+
+    xhr.onreadystatechange = ()=>{
+        if(xhr.readyState == 4 && xhr.status == 200)
+        //ADD SWEET ALERT FOR NOTIFICATION
+        hello ="";
+
+        }
+       
+    xhr.open("GET", "addGameToCart.php?addFromWishlist="+item, true);
+    xhr.send();
+}
+
+function addtoWishList(){
+    let cart = document.getElementById("gameCodeHolder").value;
+
+    xhr.onreadystatechange = ()=>{
+        if(xhr.readyState == 4 && xhr.status == 200)
+        // ADD SWEET ALERT FOR NOTIFICATION
+        hello ="";
+
+        }
+       
+    xhr.open("GET", "addGameToCart.php?addW="+cart, true);
+    xhr.send();
+}
+//interval collection
+setInterval(function(){
+    
+    fetchWishlistItems();
+}, 3000);
+
+setInterval(function(){
+    fetchCartItems();
+}, 2000);
+function fetchCartItems(){
+    cartList = document.getElementById("Cartlist");
+    
+    xhr.onreadystatechange = ()=>{
+        if(xhr.readyState == 4 && xhr.status == 200){
+            cartList.innerHTML = xhr.responseText;
+        }
+    }
+
+    xhr.open("GET", "fetchCartAndWish.php?getGames=get", true);
+    xhr.send();
+}
+
+function fetchWishlistItems(){
+    wishList = document.getElementById("wishList");
+    
+    xhr.onreadystatechange = ()=>{
+        if(xhr.readyState == 4 && xhr.status == 200){
+            wishList.innerHTML = xhr.responseText;
+        }
+    }
+
+    xhr.open("GET", "fetchWishlistItems.php?getGames=get", true);
+    xhr.send();
+}
+
+
+//REMOVE FROM WISHLIST AND CART
+function cartItemRemove(item, identify){
+    let cart = document.getElementById("gameCodeHolder").value;
+
+    let variable ="";
+    identify==1? variable="removeFromCart=":variable="removeFromWishlist=";
+    xhr.onreadystatechange = ()=>{
+        if(xhr.readyState == 4 && xhr.status == 200)
+        //ADD SWEET ALERT FOR NOTIFICATION
+        hello ="";
+
+        }
+       
+    xhr.open("GET", "RemoveFromCartAndWishlist.php?"+variable+item, true);
+    xhr.send();
 }
