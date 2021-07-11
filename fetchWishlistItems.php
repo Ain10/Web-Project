@@ -24,7 +24,9 @@
                 $codeText = "";
                 foreach($getGameCode as $i=>$codes){
                     $activeGames[$i]= $codes->nodeValue;
+                    
                 }
+                
                 if(!empty($activeGames)){
                     foreach($activeGames as $cartGames){
                         foreach($games as $game){

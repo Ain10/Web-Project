@@ -25,7 +25,7 @@
             $all[8]=$imagePath;
             $all[9]="block";
             echo implode("|", $all);
-            echo "hello";
+            
             break;
         }
     }

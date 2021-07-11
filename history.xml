@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<histories>
+    <history> 
+        <user>Ian</user>
+        <dateOfPurchase>2012-03-02</dateOfPurchase>
+        <gameCodes>
+            <code>2</code>
+            <code>11</code>
+            <code>1</code>
+        </gameCodes>
+        <price>9200</price>
+    </history>
+    <history>
+        <user>test</user>
+        <dateOfPurchase>2021-07-11</dateOfPurchase>
+        <gameCodes>
+            <code>4</code>
+            <code>5</code>
+            <code>11</code>
+        </gameCodes>
+        <price>1800</price>
+    </history>
+        <history>
+        <user>test</user>
+        <dateOfPurchase>2021-01-11</dateOfPurchase>
+        <gameCodes>
+            <code>10</code>
+            <code>2</code>
+            <code>7</code>
+        </gameCodes>
+        <price>2000</price>
+    </history>
+<history><user>test</user><dateOfPurchase>2021-07-12</dateOfPurchase><gameCodes><code>12</code></gameCodes><price>300</price></history></histories>

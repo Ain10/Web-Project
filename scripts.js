@@ -344,16 +344,21 @@ function addtoWishList(){
 setInterval(function(){
     
     fetchWishlistItems();
-}, 3000);
+}, 4050);
 
 setInterval(function(){
     fetchCartItems();
-}, 2000);
+}, 4000);
+
+setInterval(function(){
+    fetchCartItemsPrice();
+}, 4025);
 function fetchCartItems(){
     cartList = document.getElementById("Cartlist");
-    
+
     xhr.onreadystatechange = ()=>{
         if(xhr.readyState == 4 && xhr.status == 200){
+
             cartList.innerHTML = xhr.responseText;
         }
     }
@@ -361,7 +366,19 @@ function fetchCartItems(){
     xhr.open("GET", "fetchCartAndWish.php?getGames=get", true);
     xhr.send();
 }
+//fetchCartItemPrice
+function fetchCartItemsPrice(){
+    allprice = document.getElementById('allCartPrice');
+    xhr.onreadystatechange = ()=>{
+        if(xhr.readyState == 4 && xhr.status == 200){
+            allprice.value = xhr.responseText;
+            
+        }
+    }
 
+    xhr.open("GET", "fetchCartAndWish.php?getGamesPrice=get", true);
+    xhr.send();
+}
 function fetchWishlistItems(){
     wishList = document.getElementById("wishList");
     
@@ -388,7 +405,44 @@ function cartItemRemove(item, identify){
         hello ="";
 
         }
-       
+
     xhr.open("GET", "RemoveFromCartAndWishlist.php?"+variable+item, true);
     xhr.send();
 }
+
+//CHECKOUT
+function checkout(){
+    allprice = document.getElementById('allCartPrice').value;
+    purchaseConfirm = confirm('Do you want to proceed with your purchase/s?');
+    xhr.onreadystatechange = ()=>{
+        if(xhr.readyState == 4 && xhr.status == 200){
+           alert(xhr.responseText);
+        }
+    }
+    if(purchaseConfirm){
+        xhr.open("GET","checkout.php?checkout="+allprice,true);
+        xhr.send();
+    } 
+
+}
+//history
+function displayHistory(){
+    document.getElementById('purchaseHistoryModal').style.display  = "block";
+    historyPop = document.getElementById('populateHistory');
+    order = document.getElementById('option').value;
+    xhr.onreadystatechange = ()=>{
+        if(xhr.readyState == 4 && xhr.status == 200)
+        historyPop.innerHTML = xhr.responseText;
+        
+        }
+        
+    xhr.open("GET", "displayHistory.php?display="+order, true);
+    xhr.send();
+}
+
+function hideHistory(){
+    history = document.getElementById('populateHistory');
+    document.getElementById('purchaseHistoryModal').style.display  = "none";
+ 
+}
+

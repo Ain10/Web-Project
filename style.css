@@ -162,7 +162,7 @@ strong, label{
 /* NEW */
 
 #divAllUser{
-    width:250px;
+    width:15%;
     height:100%;
     padding-top:5px;
     background-color: #19A1E6;
@@ -404,4 +404,26 @@ position: absolute;
 #cartImage{
     width: 30%;
     height: 30%;
+}
+#purchaseHistoryModal{
+    background-color: salmon;
+    width: 50%;
+    height: 50%;
+    position: absolute;
+    overflow-y: scroll;
+}
+
+#historyImage{
+    max-height: 10%;
+    max-width: 10%;
+    
+}
+#populateHistory{
+    background-color: rgb(5, 255, 17);
+    min-height: 5%;
+}
+
+
+#purchasedItems{
+    background-color: sienna;
 }

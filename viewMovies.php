@@ -30,6 +30,7 @@
                 <?php echo $_SESSION['firstN']." ".$_SESSION['lastN'];?>
                 <span id="at-uname"><br><?php echo $_SESSION['username'];?></span>
             </div>
+            <button onclick="displayHistory()" id="historyButton">History</button>
             <button onclick="logout()" id="LogoutButton">Logout</button>
         </div>
 
@@ -40,13 +41,14 @@
     </div>
     <div id="checkOut">
         <h3>Price</h3>
-        <button id="checkOutButton">Check out</button>
+        <input id='allCartPrice' value='0' disabled>
+        <button id="checkOutButton" onclick="checkout()">Check out</button>
     </div>
 </div>
 <div id="displayWishlist">
     <h2>Wishlist</h2>
     <div id="wishList">
-
+<
     </div>
 </div>
 <table  id="tableMovies"><tr><th>Game Code</th><th>Title</th><th>Developer</th><th>Publisher</th><th>Genre</th><th>Price</th><th>Date of Release</th><th>Image</th></tr>
@@ -96,6 +98,7 @@
         <button id='addtoCartButton' onclick="addToCart()">Add to Cart</button>
         <button id='addToWishList' onclick="addtoWishList()">Add to Wishlist</button>
     </div>
+    
     <!-- Activity 5   -->
     <div id="divAllUser">
     <h3 id="activeU">Active Users(<span id="activeUsers">0</span>)</h3>
@@ -145,10 +148,20 @@
     </div>
 </div>
 
+<!--- Purchase History --->
+<div id="purchaseHistoryModal" style="display: none;">
+        <h2>Purchase History</h2>
+    <select id="option" onchange="displayHistory()">
+        <option value="" disabled selected>Order</option>
+        <option value="date">Date</option>
+        <option value="price">Price</option>
 
-
-
-
+  </select>
+        <div id="populateHistory">
+            
+        </div>
+        <button onclick="hideHistory()">Close</button>
+</div>
 
 
 </body>

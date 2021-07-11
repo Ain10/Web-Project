@@ -15,4 +15,9 @@
     $xmlWish = new DOMDocument();
     $xmlWish->load('wishlist.xml');
     $wishes = $xmlWish->getElementsByTagName("wish");
+
+    $xmlHistory = new DOMDocument();
+    $xmlHistory->load('history.xml');
+    $histories = $xmlHistory->getElementsByTagName("history");
+
 ?>
