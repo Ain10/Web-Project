@@ -8,16 +8,19 @@
         if(isset($_GET['display'])){
             $user = $_SESSION['username'];
             $activeGames=[];
+            $arraylimiter =[];
+            $arrayCounter=0;
             foreach($histories as $history){
                 $userID = $history->getElementsByTagName('user')->item(0)->nodeValue;
                 if($userID==$user){
                     $getGameCode = $history->getElementsByTagName('code');
-                    //may i ffix dito
+
                     foreach($getGameCode as $i=>$codes){
-                        $activeGames[$i]= $codes->nodeValue;
-                        if($getGameCode->count() > $i)break;
+                            $activeGames[$i]= $codes->nodeValue;
                     }
-                    print_r($activeGames);
+                    
+                    array_splice($activeGames, $getGameCode->count());
+
                     $sortHistory[] = array(
                         'user' =>$history->getElementsByTagName('user')->item(0)->nodeValue,
                         'dateOfPurchase'=>$history->getElementsByTagName('dateOfPurchase')->item(0)->nodeValue,
@@ -46,7 +49,9 @@
                 foreach($gamesPurchased as $gameCode){
                     foreach($games as $i =>$gam){
                         $gamID = $gam->getAttribute('gameCode');
+                        $counter = 0;
                         if($gameCode==$gamID){
+                            $counter++;
                             $gImage = $gam->getElementsByTagName('imagePath')->item(0)->nodeValue;
                             $gTitle = $gam->getElementsByTagName('title')->item(0)->nodeValue;
                             $gDeveloper = $gam->getElementsByTagName('developer')->item(0)->nodeValue;

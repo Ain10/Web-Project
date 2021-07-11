@@ -20,14 +20,24 @@
         </gameCodes>
         <price>1800</price>
     </history>
-        <history>
+    <history>
         <user>test</user>
-        <dateOfPurchase>2021-01-11</dateOfPurchase>
+        <dateOfPurchase>2021-07-11</dateOfPurchase>
         <gameCodes>
-            <code>10</code>
-            <code>2</code>
-            <code>7</code>
+            <code>5</code>
+            <code>9</code>
+            <code>12</code>
+            <code>11</code>
         </gameCodes>
-        <price>2000</price>
+        <price>18002</price>
     </history>
-<history><user>test</user><dateOfPurchase>2021-07-12</dateOfPurchase><gameCodes><code>12</code></gameCodes><price>300</price></history></histories>
+    <history>
+        <user>test</user>
+        <dateOfPurchase>2021-07-11</dateOfPurchase>
+        <gameCodes>
+            <code>1</code>
+            <code>2</code>
+        </gameCodes>
+        <price>18002</price>
+    </history>
+</histories>
