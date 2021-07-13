@@ -1,49 +1,9 @@
 d = document;
 xhr = new XMLHttpRequest();
 error=0
-
 var interv;
-
-function createCaptcha(){
-	document.getElementById('captcha').innerHTML = "";
-  	 chars =   "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@!#$%^&*";
-  	 captchaLength = 7;
-  	captcha = [];
-
-	for ( i = 0; i < captchaLength; i++) {
-		index = Math.floor(Math.random()*chars.length + 1);
-		if (captcha.indexOf(chars[index])==-1) captcha.push(chars[index]);
-		else i--;
-	}
-
-	captchaCont = document.createElement("canvas");
-	captchaCont.id = "captcha";
-	captchaCont.width = 120;
-	captchaCont.height = 50;
-	ctx = captchaCont.getContext("2d");
-	ctx.font = "25px Georgia";
-	ctx.strokeText(captcha.join(""), 0, 30);
-	
-	code = captcha.join("");
-	document.getElementById("captcha").appendChild(captchaCont);
-}
-
-function validateCaptcha(){
-    if (d.getElementById("captchaInput") == code) {
-        //success captcha
-    } else {		
-        Swal.fire({
-            icon:'error',
-            title:'Captcha Invalid',
-            text: 'Please try again.'
-        });
-        createCaptcha();
-        document.getElementById("captchaInput").value="";
-    }
-}
-
 function login(){
-    
+    //babaguhin
     username = d.getElementById('username').value;
     password = d.getElementById('password').value;
     xhr.onreadystatechange = () =>{
@@ -103,17 +63,15 @@ function checkPassword(){
         d.getElementById("confirmError").innerHTML="";
     }
 }
-
+//babaguhin
 function register(){
     rUser = d.getElementById("registerUsername").value;
     rFirst = d.getElementById("registerFirstName").value;
     rLast = d.getElementById("registerLastName").value;
     password = d.getElementById("registerPassword").value;
-    //captcha
-    captchaInput =d.getElementById("captchaInput").value;
     
     if(rUser==""||rFirst=="" || rLast==""||password==""){
-        d.getElementById("userNameError").innerHTML=="Please fill up all fields";
+        d.getElementById("userNameError").innerHTML=="Please fill all fiends";
         d.getElementById("hideRegister").style.display = "block";
     }
     if(d.getElementById("userNameError").textContent=="" && d.getElementById("accountName").textContent=="" && d.getElementById("confirmError").textContent==""&& d.getElementById("registerUsername").value!="" &&d.getElementById("registerFirstName").value!="" && d.getElementById("registerLastName").value!=""&& d.getElementById("registerPassword").value!=""&& d.getElementById("registerConfirmPassword").value!=""){
@@ -143,8 +101,6 @@ function showRegister(){
     d.getElementById("registerLastName").value = "";
     d.getElementById("registerPassword").value = "";
     d.getElementById("registerConfirmPassword").value = "";
-    //added captcha dito
-    d.getElementById("captchaInput").value = "";
 }
 function hide(){
     d.getElementById("register").style.display = "none";
@@ -154,10 +110,9 @@ function hide(){
     d.getElementById("registerLastName").value = "";
     d.getElementById("registerPassword").value = "";
     d.getElementById("registerConfirmPassword").value = "";
-    //added captcha dito
-    d.getElementById("captchaInput").value = "";
 }
 
+//dulo ng babaguhin
 
 function displayModal(gameCode){
     xhr.onreadystatechange = () =>{
@@ -199,8 +154,6 @@ function logout(){
         window.location = "index.php";
     }
 }
-
-
 /////////GET ACTIVE USERS
 function fetchActiveUsers(){
     user_list = document.getElementById("userList");
@@ -211,7 +164,6 @@ function fetchActiveUsers(){
             data = xhr.responseText.split("|");
            user_list.innerHTML = data[1];
            count.innerHTML = data[0];
-           
         }
     }
 
@@ -283,15 +235,11 @@ function sendChat(){
 
 window.onload = function(){
     fetchActiveUsers();
-    
     setInterval(function(){
         fetchActiveUsers();
         
     }, 6000);
-
-    setTimeout(function(){
-        displayProducts();
-      }, 100);
+    
     
 }
 
@@ -486,7 +434,9 @@ function displayHistory(){
     xhr.onreadystatechange = ()=>{
         if(xhr.readyState == 4 && xhr.status == 200)
         historyPop.innerHTML = xhr.responseText;
+        
         }
+        
     xhr.open("GET", "displayHistory.php?display="+order, true);
     xhr.send();
 }
@@ -494,38 +444,31 @@ function displayHistory(){
 function hideHistory(){
     history = document.getElementById('populateHistory');
     document.getElementById('purchaseHistoryModal').style.display  = "none";
+ 
 }
 
+//Captcha
+function createCaptcha(){
+	document.getElementById('captcha').innerHTML = "";
+  	 chars =   "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@!#$%^&*";
+  	 captchaLength = 7;
+  	captcha = [];
 
-function displayProducts(){
-    viewOption = document.getElementById('viewOption').value;
-    gameGenre = document.getElementById('gameFindGenre').value;
-    year = document.getElementById('year').value;
-    showProducts = document.getElementById('mainDisplay');
-    
-    xhr.onreadystatechange = ()=>{
-        if(xhr.readyState == 4 && xhr.status == 200)
-        showProducts.innerHTML = xhr.responseText;
-        }
-    xhr.open("GET", "DisplayProducts.php?display="+ viewOption + "&genre=" + gameGenre + "&year=" + year, true);
-    xhr.send();
+	for ( i = 0; i < captchaLength; i++) {
+		index = Math.floor(Math.random()*chars.length + 1);
+		if (captcha.indexOf(chars[index])==-1) captcha.push(chars[index]);
+		else i--;
+	}
 
-
-
+	captchaCont = document.createElement("canvas");
+	captchaCont.id = "captcha";
+	captchaCont.width = 120;
+	captchaCont.height = 50;
+	ctx = captchaCont.getContext("2d");
+	ctx.font = "25px Georgia";
+	ctx.strokeText(captcha.join(""), 0, 30);
+	
+	code = captcha.join("");
+	document.getElementById("captcha").appendChild(captchaCont);
 }
 
-function scrollRight(){
-    document.getElementById('sectionChief').scrollLeft = 1000;
-    console.log("Scrolled");
-}
-function nice(){
-    console.log("Scrolled");
-    document.getElementById('sectionChief').scrollLeft = -1000;
-}
-function resetFilters(){
-    $('#gameFindGenre').prop('selectedIndex', 0);
-    $('#year').prop('selectedIndex', 0);
-    displayProducts();
-}
-
-//Drop downlist change
