@@ -3,6 +3,43 @@ xhr = new XMLHttpRequest();
 error=0
 
 var interv;
+function createCaptcha(){
+	document.getElementById('captcha').innerHTML = "";
+  	 chars =   "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@!#$%^&*";
+  	 captchaLength = 7;
+  	captcha = [];
+
+	for ( i = 0; i < captchaLength; i++) {
+		index = Math.floor(Math.random()*chars.length + 1);
+		if (captcha.indexOf(chars[index])==-1) captcha.push(chars[index]);
+		else i--;
+	}
+
+	captchaCont = document.createElement("canvas");
+	captchaCont.id = "captcha";
+	captchaCont.width = 120;
+	captchaCont.height = 50;
+	ctx = captchaCont.getContext("2d");
+	ctx.font = "25px Georgia";
+	ctx.strokeText(captcha.join(""), 0, 30);
+
+	code = captcha.join("");
+	document.getElementById("captcha").appendChild(captchaCont);
+}
+
+function validateCaptcha(){
+    if (d.getElementById("captchaInput") == code) {
+        //success captcha
+    } else {		
+        Swal.fire({
+            icon:'error',
+            title:'Captcha Invalid',
+            text: 'Please try again.'
+        });
+        createCaptcha();
+        document.getElementById("captchaInput").value="";
+    }
+}
 
 function login(){
     
@@ -71,9 +108,10 @@ function register(){
     rFirst = d.getElementById("registerFirstName").value;
     rLast = d.getElementById("registerLastName").value;
     password = d.getElementById("registerPassword").value;
-    
+//captcha
+    captchaInput =d.getElementById("captchaInput").value;
     if(rUser==""||rFirst=="" || rLast==""||password==""){
-        d.getElementById("userNameError").innerHTML=="Please fill all fiends";
+        d.getElementById("userNameError").innerHTML=="Please fill up all fields";
         d.getElementById("hideRegister").style.display = "block";
     }
     if(d.getElementById("userNameError").textContent=="" && d.getElementById("accountName").textContent=="" && d.getElementById("confirmError").textContent==""&& d.getElementById("registerUsername").value!="" &&d.getElementById("registerFirstName").value!="" && d.getElementById("registerLastName").value!=""&& d.getElementById("registerPassword").value!=""&& d.getElementById("registerConfirmPassword").value!=""){
@@ -103,6 +141,8 @@ function showRegister(){
     d.getElementById("registerLastName").value = "";
     d.getElementById("registerPassword").value = "";
     d.getElementById("registerConfirmPassword").value = "";
+        //added captcha dito
+        d.getElementById("captchaInput").value = "";
 }
 function hide(){
     d.getElementById("register").style.display = "none";
@@ -112,6 +152,7 @@ function hide(){
     d.getElementById("registerLastName").value = "";
     d.getElementById("registerPassword").value = "";
     d.getElementById("registerConfirmPassword").value = "";
+    d.getElementById("captchaInput").value = "";
 }
 
 

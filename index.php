@@ -13,10 +13,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <script type="application/javascript" src="scripts.js"></script>
     <title>Document</title>
 </head>
-<body style = "width: 100%;">
-    <script type="application/javascript" src="scripts.js"></script>
+<body style = "width: 100%;" onload="createCaptcha()">
+    
 
     
     <table id="tableLogin" style = "border-radius: 10px; padding: 10px; background: #deb887; font-size: 20px;">
@@ -68,7 +69,12 @@
     <tr id="loginStyle">
         <td>Confirm Password:</td>
         <td><input type="password" onfocusout="checkCPassword();" id="registerConfirmPassword" required><td></tr>
-        
+    <tr id="loginStyle" style = "background-color: #f2f2f2;">
+        <td>Captcha Code:</td>
+        <td><div id = "captcha"></div><td></tr>
+    <tr id="loginStyle">
+        <td>Captcha</td>
+        <td> <input type="text" id="captchaInput" name="captchaInput" placeholder="Captcha" required><td></tr>
     <tr id="loginStyle" style = "background-color: #f2f2f2;">
         <td><button onclick="register()" id="registerButton" style = "background-color: #008CBA">Add User</button><td>
     </table>
