@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="style.css">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
@@ -48,7 +49,7 @@
 <div id="displayWishlist">
     <h2>Wishlist</h2>
     <div id="wishList">
-<
+
     </div>
 </div>
 <div id="filters"> 

@@ -311,8 +311,11 @@ function addToCart(){
     xhr.onreadystatechange = ()=>{
         if(xhr.readyState == 4 && xhr.status == 200)
         // ADD SWEET ALERT FOR NOTIFICATION
-            hello ="";
-
+            Swal.fire({
+                icon: 'success',
+                title: 'Item Added!',
+                text: 'Item has been successfully added to cart.'
+            })
         }
        
     xhr.open("GET", "addGameToCart.php?addG="+cart, true);
@@ -326,8 +329,11 @@ function addToCartFromWishList(item){
     xhr.onreadystatechange = ()=>{
         if(xhr.readyState == 4 && xhr.status == 200)
         //ADD SWEET ALERT FOR NOTIFICATION
-        hello ="";
-
+        Swal.fire({
+            icon: 'success',
+            title: 'Item Added!',
+            text: 'Item Successfully Added from Wishlist to Cart.'
+        })
         }
        
     xhr.open("GET", "addGameToCart.php?addFromWishlist="+item, true);
@@ -340,7 +346,11 @@ function addtoWishList(){
     xhr.onreadystatechange = ()=>{
         if(xhr.readyState == 4 && xhr.status == 200)
         // ADD SWEET ALERT FOR NOTIFICATION
-        hello ="";
+        Swal.fire({
+            icon: 'success',
+            title: 'Item Added!',
+            text: 'Item has been successfully added to wishlist.'
+        })
 
         }
        
@@ -351,11 +361,11 @@ function addtoWishList(){
 setInterval(function(){
     
     fetchWishlistItems();
-}, 4050);
+}, 1500);
 
 setInterval(function(){
     fetchCartItems();
-}, 4000);
+}, 1000);
 
 setInterval(function(){
     fetchCartItemsPrice();
@@ -409,7 +419,11 @@ function cartItemRemove(item, identify){
     xhr.onreadystatechange = ()=>{
         if(xhr.readyState == 4 && xhr.status == 200)
         //ADD SWEET ALERT FOR NOTIFICATION
-        hello ="";
+        Swal.fire({
+            icon: 'success',
+            title: 'Item Removed!',
+            text: 'Item has been successfully removed.'
+        })
 
         }
 
@@ -420,17 +434,29 @@ function cartItemRemove(item, identify){
 //CHECKOUT
 function checkout(){
     allprice = document.getElementById('allCartPrice').value;
-    purchaseConfirm = confirm('Do you want to proceed with your purchase/s?');
+    purchaseConfirm = Swal.fire({
+        icon: 'question',
+        title: 'Do you want to proceed with the purchase?',
+        confirmButtonText: 'Yes',
+        showCancelButton: true,
+    }).then(function(result){
+        if(result.value){
+            xhr.open("GET","checkout.php?checkout="+allprice,true);
+            xhr.send();
+            Swal.fire({
+                icon: 'success',
+                title: 'Item/s Purchased!',
+                text: 'Item/s have been successfully purchased.'
+            });
+        }else{
+            //
+        }
+    });
     xhr.onreadystatechange = ()=>{
         if(xhr.readyState == 4 && xhr.status == 200){
            alert(xhr.responseText);
         }
     }
-    if(purchaseConfirm){
-        xhr.open("GET","checkout.php?checkout="+allprice,true);
-        xhr.send();
-    } 
-
 }
 //history
 function displayHistory(){
