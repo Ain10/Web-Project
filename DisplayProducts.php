@@ -17,10 +17,40 @@
         }
     }
 
+   
+    if(isset($_GET['search'])){
+        require_once('movieSort.php');
+        $searchItem = $_GET['search'];
+        if($searchItem==''){
+            echo "";
+        }
+        $html="";
+
+        foreach($sortGame as $game){
+            $id=$game['gameCode'];
+            $title=$game['title'];
+            $developer=$game['developer'];
+            $publisher=$game['publisher'];
+            $genre=$game['genre'];
+            $price=$game['price'];
+            $dateOfRelease=$game['dateOfRelease'];
+
+            if(str_contains(strtolower($title), strtolower($searchItem))){
+                $html .= "<p id='searchOnDiv' onclick='searchDivShit($id)' style='cursor: pointer'>
+                $title</p><hr>
+                ";
+            }
+        }
+        echo $html;
+
+    }
+
+
     function displayList(){
         require_once('movieSort.php');
         $genresearch = $_GET['genre'];
         $year = $_GET['year'];
+        $searchgg = $_GET['searchgg'];
        
         $html= "<table id='tableMovies'><tr><th>Game Code</th><th>Title</th><th>Developer</th><th>Publisher</th><th>Genre</th><th>Price</th><th>Date of Release</th></tr>";
             foreach($sortGame as $game){
@@ -33,7 +63,7 @@
             $price=$game['price'];
             $dateOfRelease=$game['dateOfRelease'];
             
-            if(($genre == $genresearch || empty($genresearch))&& (intval($year)>=intval(substr($dateOfRelease,0,4)) || empty($year))){
+            if(($genre == $genresearch || empty($genresearch))&& (intval($year)>=intval(substr($dateOfRelease,0,4)) || empty($year)) && (str_contains(strtolower($title), strtolower($searchgg)) || empty($searchgg))){
                
                     $html.="<tr onclick='displayModal($id)' id='trHover'>
                     <td>$id</td>
@@ -54,8 +84,10 @@
         require_once('movieSort.php');
         $genresearch = $_GET['genre'];
         $year = $_GET['year'];
-        $html="<main> <span id='span1' onclick='nice()'>&#139;</span><span id='span2' onclick='scrollRight()'>&#155;</span><section id='sectionChief'>";
+        $searchgg = $_GET['searchgg'];
 
+        $html="<main> <span id='span1' onclick='nice()'>&#139;</span><span id='span2' onclick='scrollRight()'>&#155;</span><section id='sectionChief'>";
+       
         foreach($sortGame as $game){
             
             $id=$game['gameCode'];
@@ -66,7 +98,7 @@
             $price=$game['price'];
             $dateOfRelease=$game['dateOfRelease'];
             $image = $game['imagePath'];
-            if(($genre == $genresearch || empty($genresearch))&& (intval($year)>=intval(substr($dateOfRelease,0,4)) || empty($year))){
+            if(($genre == $genresearch || empty($genresearch))&& (intval($year)>=intval(substr($dateOfRelease,0,4)) || empty($year)) && (str_contains(strtolower($title), strtolower($searchgg)) || empty($searchgg))){
                 $html .= "<div id='divGal' onclick='displayModal($id)' style='background-image: url($image)''>
                 <p id=textData>$title</p><br>
                 <p id=textData>$developer</p><br>

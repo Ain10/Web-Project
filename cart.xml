@@ -5,4 +5,4 @@
         
     
     <game>12</game><game>1</game></cart>
-<cart username="test"><game>3</game></cart></carts>
+<cart username="test"><game>3</game></cart><cart username="asd"/><cart username="dd"/></carts>

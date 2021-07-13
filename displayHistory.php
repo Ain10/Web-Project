@@ -9,6 +9,7 @@
             $user = $_SESSION['username'];
             $activeGames=[];
             $arraylimiter =[];
+            $sortHistory=[];
             $arrayCounter=0;
             foreach($histories as $history){
                 $userID = $history->getElementsByTagName('user')->item(0)->nodeValue;
@@ -20,7 +21,7 @@
                     }
                     
                     array_splice($activeGames, $getGameCode->count());
-
+//null catcher
                     $sortHistory[] = array(
                         'user' =>$history->getElementsByTagName('user')->item(0)->nodeValue,
                         'dateOfPurchase'=>$history->getElementsByTagName('dateOfPurchase')->item(0)->nodeValue,
@@ -28,6 +29,10 @@
                         'price'=>$history->getElementsByTagName('price')->item(0)->nodeValue
                     );
                 }  
+            }
+            if(empty($sortHistory)){
+                echo "No Recent Purchase";
+                system(exit);
             }
             function sortOrder($a, $b){
                 if($_GET['display']=='date'){
@@ -74,5 +79,5 @@
             }
 
         }
-        
+
 ?>

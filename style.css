@@ -34,20 +34,7 @@ tr:nth-child(odd){
         background-color: #3c86d9;
         color: white;
     }
-#LogoutButton{
-    background-color: #ddd;
-    border: none;
-    color: black;
-    padding: 2px 16px;
-    text-align: center;
-    font-size: 12px;
-    margin: 18px 4px;
-    margin-left: 77%;
-    
-    transition: 0.3s;
-    border-radius: 5px;
-    float: right;
-}
+
 
     #LogoutButton:hover {
         background-color: #f4511e;
@@ -491,4 +478,50 @@ section::-webkit-scrollbar{
     margin-right: 2%;
     padding-top: 1%;
     margin: 2% 1%;
+}
+  
+
+
+
+
+#searchShit{
+    margin-top: 1.2%;
+    margin-left: 30%;
+    height: 6%;
+    min-width: 17%;
+    position: absolute;
+}
+#historyButton{
+    margin-left: 35%;
+}
+
+#LogoutButton{
+    background-color: #ddd;
+    border: none;
+    color: black;
+    padding: 2px 16px;
+    text-align: center;
+    font-size: 12px;
+    margin: 18px 4px;
+    margin-left: 19%;
+    
+    transition: 0.3s;
+    border-radius: 5px;
+    float: right;
+}
+#autoC{
+    min-width: 17.7%;
+    max-width: 17.8%;
+    z-index: 1;
+    min-height: -5%;
+    background: #60d42a;
+    position: absolute;
+    margin-left: 30%;
+    margin-top: 4.7%;
+    padding-bottom: -2%;
+}
+#searchShitButton{
+    position: absolute;
+    margin-top: 2%;
+    margin-left: 47.7%;
 }

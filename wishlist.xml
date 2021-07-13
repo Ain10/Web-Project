@@ -4,4 +4,4 @@
         
         <game>2</game>
     <game>12</game><game>10</game></wish>
-<wish username="test"/></wishes>
+<wish username="test"/><wish username="asd"/><wish username="dd"><game>2</game></wish></wishes>

@@ -11,33 +11,47 @@
         if(isset($_GET['addW'])){
             $gameCode = $_GET['addW'];
             $user = $_SESSION['username'];
-            //need data validation
-            
+   
             $newGamesAdded = $xmlWish->createElement('game',$gameCode);
             
             foreach($wishes as $wish){
-                echo $gameCode;
+                
                 $wishID = $wish->getAttribute("username");
+
                 if($wishID == $user){
+                    $wishGs = $wish->getElementsByTagName('game');
+                    foreach($wishGs as $i => $wishGCodes){
+                        if($wishGCodes->nodeValue == $gameCode){
+                            //sweet alert "already added"
+                            echo "already added";
+                            system(exit);
+                        }
+                    }
                     $wish->appendChild($newGamesAdded);
                     $xmlWish->save('wishlist.xml');
-                    //SWEET NOTIF
                     echo "SUCCESS";
                     
                 }
             }
         }
+
+
     //ADD GAME TO CART
     if(isset($_GET['addG'])){
         $gameCode = $_GET['addG'];
         $user = $_SESSION['username'];
-        //need data validation
-        
         $newGamesAdded = $xmlCarts->createElement('game',$gameCode);
-
         foreach($carts as $cart){
             $cartID = $cart->getAttribute("username");
             if($cartID == $user){
+                $cartGs = $cart->getElementsByTagName('game');
+                foreach($cartGs as $i => $cartGCodes){
+                    if($cartGCodes->nodeValue == $gameCode){
+                        //sweet alert already added
+                        echo "already added";
+                        system(exit);
+                    }
+                }
                 $cart->appendChild($newGamesAdded);
                 $xmlCarts->save('cart.xml');
                 //SWEET NOTIF
@@ -50,16 +64,25 @@
     if(isset($_GET['addFromWishlist'])){
         $gameCode = $_GET['addFromWishlist'];
         $user = $_SESSION['username'];
-        //need data validation
+
+ 
         
         $newGamesAdded = $xmlCarts->createElement('game',$gameCode);
 
         foreach($carts as $cart){
             $cartID = $cart->getAttribute("username");
+
             if($cartID == $user){
+                $cartGs = $cart->getElementsByTagName('game');
+                foreach($cartGs as $i => $cartGCodes){
+                    if($cartGCodes->nodeValue == $gameCode){
+                        //sweet alert already added
+                        echo "already added";
+                        system(exit);
+                    }
+                }
                 $cart->appendChild($newGamesAdded);
                 $xmlCarts->save('cart.xml');
-                //SWEET NOTIF
                 echo "SUCCESS";
                 
             }

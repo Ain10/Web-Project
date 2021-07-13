@@ -145,15 +145,27 @@ function hideModal(){
 }
 
 function logout(){
-    logoutConfirm = confirm("are you sure?");
+    Swal.fire({
+        title: 'Are you sure you want to logout?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire(
+            'Logout',
+            'Click ok to proceed',
+            'success',
+            
+          ).then(function() {
+            window.location = "register.php?logout=true";
 
-    xhr.open("GET","register.php?logout="+logoutConfirm,true);
-    xhr.send();
+          });
+        }
+      })
 
-
-    if(logoutConfirm == true){
-        window.location = "index.php";
-    }
 }
 /////////GET ACTIVE USERS
 function fetchActiveUsers(){
@@ -310,8 +322,20 @@ function addToCart(){
 
     xhr.onreadystatechange = ()=>{
         if(xhr.readyState == 4 && xhr.status == 200)
-        // ADD SWEET ALERT FOR NOTIFICATION
-            hello ="";
+        cartIdent = xhr.responseText;
+        if(cartIdent=="already added"){
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Item Already Added'
+              })
+        }else{
+            Swal.fire({
+                icon: 'success',
+                title: 'Item Added!',
+                text: 'Item has been successfully added to cart.'
+            })
+        }
 
         }
        
@@ -325,8 +349,20 @@ function addToCartFromWishList(item){
 
     xhr.onreadystatechange = ()=>{
         if(xhr.readyState == 4 && xhr.status == 200)
-        //ADD SWEET ALERT FOR NOTIFICATION
-        hello ="";
+        cartIdent = xhr.responseText;
+        if(cartIdent=="already added"){
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Item Already Added'
+              })
+        }else{
+            Swal.fire({
+                icon: 'success',
+                title: 'Item Added!',
+                text: 'Item has been successfully added to cart.'
+            })
+        }
 
         }
        
@@ -339,8 +375,20 @@ function addtoWishList(){
 
     xhr.onreadystatechange = ()=>{
         if(xhr.readyState == 4 && xhr.status == 200)
-        // ADD SWEET ALERT FOR NOTIFICATION
-        hello ="";
+        wishIdent = xhr.responseText;
+        if(wishIdent=="already added"){
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Item Already Added'
+              })
+        }else{
+            Swal.fire({
+                icon: 'success',
+                title: 'Item Added!',
+                text: 'Item has been successfully added to wishlist.'
+            })
+        }
 
         }
        
@@ -403,33 +451,69 @@ function fetchWishlistItems(){
 //REMOVE FROM WISHLIST AND CART
 function cartItemRemove(item, identify){
     let cart = document.getElementById("gameCodeHolder").value;
-
     let variable ="";
     identify==1? variable="removeFromCart=":variable="removeFromWishlist=";
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "Remove Item",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire(
+            'Deleted!',
+            'Product will be removed shortly.',
+            'success',
+            
+          ).then(function() {
+            xhr.open("GET", "RemoveFromCartAndWishlist.php?"+variable+item, true);
+            xhr.send();
+          });
+        }
+      })
+
     xhr.onreadystatechange = ()=>{
         if(xhr.readyState == 4 && xhr.status == 200)
         //ADD SWEET ALERT FOR NOTIFICATION
         hello ="";
 
-        }
+    }
 
-    xhr.open("GET", "RemoveFromCartAndWishlist.php?"+variable+item, true);
-    xhr.send();
+    
 }
 
 //CHECKOUT
 function checkout(){
     allprice = document.getElementById('allCartPrice').value;
-    purchaseConfirm = confirm('Do you want to proceed with your purchase/s?');
+    Swal.fire({
+        title: 'Purchase Product',
+        text: "Do you want to proceed with your purchase/s?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire(
+            'Items !',
+            'You can view your purchases in you purchase history',
+            'success',
+            
+          ).then(function() {
+            xhr.open("GET","checkout.php?checkout="+allprice,true);
+        xhr.send();
+          });
+        }
+      })
     xhr.onreadystatechange = ()=>{
         if(xhr.readyState == 4 && xhr.status == 200){
-           alert(xhr.responseText);
+           
         }
     }
-    if(purchaseConfirm){
-        xhr.open("GET","checkout.php?checkout="+allprice,true);
-        xhr.send();
-    } 
 
 }
 //history
@@ -461,7 +545,7 @@ function displayProducts(){
         if(xhr.readyState == 4 && xhr.status == 200)
         showProducts.innerHTML = xhr.responseText;
         }
-    xhr.open("GET", "DisplayProducts.php?display="+ viewOption + "&genre=" + gameGenre + "&year=" + year, true);
+    xhr.open("GET", "DisplayProducts.php?display="+ viewOption + "&genre=" + gameGenre + "&year=" + year+"&searchgg=", true);
     xhr.send();
 
 
@@ -481,5 +565,45 @@ function resetFilters(){
     $('#year').prop('selectedIndex', 0);
     displayProducts();
 }
+function searchShit(){
+    var search = document.getElementById('searchShit').value;
+    var autoG = document.getElementById('autoC');
+    if(search==""){
+        document.getElementById('autoC').innerHTML ="";
+    }
 
-//Drop downlist change
+    if(search != ""){
+        xhr.open("GET", "DisplayProducts.php?search="+search, true);
+        xhr.send();
+    }
+    xhr.onreadystatechange = ()=>{
+        if(xhr.readyState == 4 && xhr.status == 200)
+        autoG.innerHTML = xhr.responseText;
+        }
+}
+
+function searchDivShit(gameID){
+    document.getElementById('autoC').innerHTML ="";
+    document.getElementById('searchShit').value ="";
+    displayModal(gameID);
+}
+
+function searchShitB(){
+    viewOption = document.getElementById('viewOption').value;
+    gameGenre = document.getElementById('gameFindGenre').value;
+    year = document.getElementById('year').value;
+    showProducts = document.getElementById('mainDisplay');
+    searchSS = document.getElementById('searchShit').value;
+    document.getElementById('autoC').innerHTML ="";
+    document.getElementById('searchShit').value ="";
+    if(searchSS == ""){
+        //sweet alert empty
+    }
+    
+    xhr.onreadystatechange = ()=>{
+        if(xhr.readyState == 4 && xhr.status == 200)
+        showProducts.innerHTML = xhr.responseText;
+        }
+    xhr.open("GET", "DisplayProducts.php?display="+ viewOption + "&genre=" + gameGenre + "&year=" + year + "&searchgg=" + searchSS, true);
+    xhr.send();
+}

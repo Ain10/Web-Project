@@ -27,4 +27,4 @@
         <lastName>test</lastName>
         <profilePic>1d6a5324d67bde564dc8948bf6e94d31.jpg</profilePic>
         <status>active</status>
-</user></users>
+</user><user username="asd"><password>asd</password><firstName>asd</firstName><lastName>asd</lastName><profilePic>default.png</profilePic><status>inactive</status></user><user username="dd"><password>dd</password><firstName>dd</firstName><lastName>dd</lastName><profilePic>default.png</profilePic><status>inactive</status></user></users>
