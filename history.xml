@@ -29,7 +29,7 @@
             <code>12</code>
             <code>11</code>
         </gameCodes>
-        <price>18002</price>
+        <price>8100</price>
     </history>
     <history>
         <user>test</user>
@@ -38,6 +38,6 @@
             <code>1</code>
             <code>2</code>
         </gameCodes>
-        <price>18002</price>
+        <price>2200</price>
     </history>
 </histories>

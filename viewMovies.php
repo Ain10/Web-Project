@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
-<body onload="">
+<body>
 <script src="jquery-3.6.0.js"></script>
 <script type="application/javascript" src="scripts.js"></script>
 </script>
@@ -51,31 +51,34 @@
 <
     </div>
 </div>
-<table  id="tableMovies"><tr><th>Game Code</th><th>Title</th><th>Developer</th><th>Publisher</th><th>Genre</th><th>Price</th><th>Date of Release</th><th>Image</th></tr>
-    <?php 
-        foreach($sortGame as $game){
-            $id=$game['gameCode'];
-            $title=$game['title'];
-            $developer=$game['developer'];
-            $publisher=$game['publisher'];
-            $genre=$game['genre'];
-            $price=$game['price'];
-            $dateOfRelease=$game['dateOfRelease'];
-            $imagePath=$game['imagePath'];
+<div id="filters"> 
+<select id="viewOption" onchange="displayProducts()">
+        <option value="gallery" selected>Gallery View</option>
+        <option value="list">List View</option>
+  </select>
+  <select id="gameFindGenre" onchange="displayProducts()">
+        <option value="" disabled selected>Genre</option>
+        <option value="Action">Action</option>
+        <option value="Adventure">Adventure</option>
+        <option value="Fighting">Fighting</option>
+        <option value="Indie">Indie</option>
+        <option value="Thriller">Thriller</option>
+        <option value="Simulation">Simulation</option>
+        <option value="Survival">Survival</option>
+        <option value="Casual">Casual</option>
+  </select>
+  <select id="year" onchange="displayProducts()">
+        <option value="" disabled selected>Year</option>
+        <option value="2011">2011</option>
+        <option value="2015">2015</option>
+        <option value="2020">2020</option>
+  </select>
+  <button id="resetFilter" onclick='resetFilters()'>Reset Filters</button>
+</div>
+<div id="mainDisplay" >
 
-            echo "<tr onclick='displayModal($id)' id='trHover'>
-            <td>$id</td>
-            <td>$title</td>
-            <td>$developer</td>
-            <td>$publisher</td>
-            <td>$genre</td>
-            <td>$price</td>
-            <td>$dateOfRelease</td>
-            <td>$imagePath</td>
-            </tr>";
-        }
-    ?>
-    </table>
+</div>
+
     <div id="modal" style="display: none;" onclick="hideModal()">
         <input id='gameCodeHolder' type='hidden' value="">
         <img src="" id="modalImage"><br>
@@ -165,4 +168,5 @@
 
 
 </body>
+
 </html>

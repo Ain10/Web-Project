@@ -1,6 +1,8 @@
 <?php
         require_once('xmlConnector.php');
-
+        $xmlGames = new DOMDocument();
+        $xmlGames->load('games.xml');
+        $games = $xmlGames->getElementsByTagName("game");
 
         foreach($xmlGames->getElementsByTagName('game') as $game) {
             $sortGame[] = array(
