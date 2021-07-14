@@ -47,10 +47,22 @@ function login(){
 }
 
 //REGISTER
+
+function usernameValidate(validate){
+    if (validate== "Username is Already Taken"){
+        Swal.fire({
+			icon: 'error',
+			title: 'Error',
+			text: 'Username already exists!'
+		  });
+    }
+}
+
 function checkUsername(username){
     xhr.onreadystatechange = () =>{
         if(xhr.readyState == 4 && xhr.status ==200){
-            d.getElementById("userNameError").innerHTML = xhr.responseText;
+            usernameValidate(xhr.responseText);
+            d.getElementById("test").innerHTML = xhr.responseText;
         }
     };
     xhr.open("GET","register.php?user="+username,true);
@@ -74,7 +86,12 @@ function checkCPassword(){
     password = d.getElementById("registerPassword").value;
     passwordC = d.getElementById("registerConfirmPassword").value;
     if(password != passwordC && password!=""){
-        d.getElementById("confirmError").innerHTML="Password does not Match";
+        Swal.fire({
+            icon:'error',
+            title:'Password did not match',
+            text:'Please try again'
+        });
+        // d.getElementById("confirmError").innerHTML="Password does not Match";
     }else{
         d.getElementById("confirmError").innerHTML="";
     }
@@ -84,6 +101,11 @@ function checkPassword(){
     password = d.getElementById("registerPassword").value;
     passwordC = d.getElementById("registerConfirmPassword").value;
     if(password != passwordC && passwordC != ""){
+        Swal.fire({
+            icon:'error',
+            title:'Password did not match',
+            text:'Please try again'
+        });
         d.getElementById("confirmError").innerHTML="Password does not Match";
     }else{
         d.getElementById("confirmError").innerHTML="";
@@ -97,9 +119,15 @@ function register(){
     password = d.getElementById("registerPassword").value;
 //captcha
     captchaInput =d.getElementById("captchaInput").value;
-    if(rUser==""||rFirst=="" || rLast==""||password==""){
-        d.getElementById("userNameError").innerHTML=="Please fill up all fields";
-        d.getElementById("hideRegister").style.display = "block";
+    if(rUser==""||rFirst=="" || rLast==""||password==""|| captchaInput == ""){
+        
+        Swal.fire({
+            icon:'error',
+            title:'All fields are required',
+            
+        });
+        // d.getElementById("userNameError").innerHTML=="Please fill up all fields";
+        // d.getElementById("hideRegister").style.display = "block";
     }
     if(d.getElementById("userNameError").textContent=="" && d.getElementById("accountName").textContent=="" && d.getElementById("confirmError").textContent==""&& d.getElementById("registerUsername").value!="" &&d.getElementById("registerFirstName").value!="" && d.getElementById("registerLastName").value!=""&& d.getElementById("registerPassword").value!=""&& d.getElementById("registerConfirmPassword").value!=""){
         xhr.onreadystatechange = () =>{
@@ -110,6 +138,11 @@ function register(){
         };
         console.log("First Name: "+rFirst+"Last Name: "+rLast);
         if (d.getElementById("captchaInput").value == code) {
+            Swal.fire({
+                icon:'Success',
+                title:'Registration Successful',
+            });
+
             $('form').animate({
                 height: "toggle",
                 opacity: "toggle"
@@ -117,6 +150,13 @@ function register(){
     
             xhr.open("GET","register.php?registerUser="+rUser+"&firstN="+rFirst+
             "&lastN="+rLast+"&pass="+password,true);
+
+            d.getElementById("registerUsername").value="";
+            d.getElementById("registerPassword").value="";
+            d.getElementById("registerConfirmPassword").value="";
+            d.getElementById("registerFirstName").value="";
+            d.getElementById("registerLastName").value="";
+            d.getElementById("captchaInput").value="";
         } else {
            
             Swal.fire({
@@ -125,7 +165,7 @@ function register(){
                 text: 'Please try again.'
             });
             createCaptcha();
-            document.getElementById("captchaInput").value="";
+            d.getElementById("captchaInput").value="";
         }
       
         xhr.send();

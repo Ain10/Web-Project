@@ -4,13 +4,14 @@
     include('xmlConnector.php');
 
 
+ 
 
     if(isset($_GET['user'])){
         $userN = $_GET['user'];
         foreach($users as $user){
             $username = $user->getAttribute("username");
             if($username == $userN){
-                echo "Username is Already Taken";
+                echo "Username is Already Taken";       
                 exit();
             }
         }
