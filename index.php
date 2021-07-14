@@ -75,7 +75,7 @@
             <td id="showRegister" onclick="showRegister()" >Register</td>
             <td id="hideRegister" onclick="hide()" style="display: none;">Cancel</td>
 
-    </table>
+    </table> -->
 
     <div id="register" style="display: none;">
 
@@ -88,7 +88,7 @@
         <p id="confirmError"></p>
     </td>
     </tr>
-    <tr id="loginStyle">
+    <!-- <tr id="loginStyle">
         <td>Username:</td>
         <td><input type="text" onfocusout="checkUsername(this.value);" id="registerUsername" required></td></tr>
         
@@ -114,10 +114,10 @@
         <td>Captcha</td>
         <td> <input type="text" id="captchaInput" name="captchaInput" placeholder="Captcha" required><td></tr>
     <tr id="loginStyle" style = "background-color: #f2f2f2;">
-        <td><button onclick="register()" id="registerButton" style = "background-color: #008CBA">Add User</button><td>
+        <td><button onclick="register()" id="registerButton" style = "background-color: #008CBA">Add User</button><td> -->
     </table>
 </div>
-    </div> -->
+    </div>
     
 
 </body>
