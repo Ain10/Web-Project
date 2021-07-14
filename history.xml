@@ -40,4 +40,4 @@
         </gameCodes>
         <price>2200</price>
     </history>
-</histories>
+<history><user>asd</user><dateOfPurchase>2021-07-13</dateOfPurchase><gameCodes><code>4</code><code>6</code></gameCodes><price>1400</price></history><history><user>dd</user><dateOfPurchase>2021-07-14</dateOfPurchase><gameCodes><code>1</code><code>2</code></gameCodes><price>[object HTMLInputElement]</price></history></histories>

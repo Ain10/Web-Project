@@ -12,16 +12,53 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <!-- <link rel="stylesheet" href="style.css"> -->
     <script type="application/javascript" src="scripts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>  
+    <script src="jquery-3.6.0.js"></script>
+    <link rel="stylesheet" href="css/style.css" />
+    <script>      
+        $(document).ready(function() {
+	$('.regis a').on('click', function() {
+		$('form').animate({
+			height: "toggle",
+			opacity: "toggle"
+		}, "fast");
+	});
+	});
+    </script>
     
+
+
     <title>Document</title>
 </head>
 <body style = "width: 100%;" onload="createCaptcha()">
-   
 
+<body onload="createCaptcha()">
+<div class="formContainer">
+        <div class="form">
+            <form class= "loginForm">
+                <input type="text" id="username" name="username" placeholder="Username">
+                <input type="Password" id="password" name="password" placeholder="Password">
+                <div id="login" class="button" onclick="login()">Login</div>
+                <p class="regis">Not Registered? <a href="#">Create an account</a></p>
+			</form>
+			<form class="registrationForm">
+                <input type="text" id="registerUsername" onfocusout="checkUsername(this.value);"name="registerUsername" placeholder="Username" required>
+                <input type="password" onfocusout="checkPassword();"  id="registerPassword" name="registerPassword" placeholder="Password" required>
+                <input type="password"  onfocusout="checkPassword();"  id="registerConfirmPassword" name="registerConfirmPassword" placeholder="Confirm Password" required>
+                <input type="text" id="registerFirstName" onfocusout="checkName();" name="registerFirstName" placeholder="First Name" required>
+                <input type="text" id="registerLastName" onfocusout="checkName();" name="registerLastName" placeholder="Last Name" required>
+				
+                <div id = "captcha"></div>
+                <input type="text" id= "captchaInput" name="captchaInput" placeholder="Captcha">
+                <div id="registerButton" class="button" onclick="register()">Register</div>
+                <p class="regis">Already registered? <a href="#">Sign in</a></p>
+		</form> 
+		</div>
+	</div>    
     
-    <table id="tableLogin" style = "border-radius: 10px; padding: 10px; background: #deb887; font-size: 20px;">
+    <!-- <table id="tableLogin" style = "border-radius: 10px; padding: 10px; background: #deb887; font-size: 20px;">
         <tr id="loginStyle" style = "background: #deb887;">
         <td colspan="2">
         <div id="display"></div>
@@ -76,14 +113,12 @@
     <tr id="loginStyle">
         <td>Captcha</td>
         <td> <input type="text" id="captchaInput" name="captchaInput" placeholder="Captcha" required><td></tr>
-        
     <tr id="loginStyle" style = "background-color: #f2f2f2;">
         <td><button onclick="register()" id="registerButton" style = "background-color: #008CBA">Add User</button><td>
     </table>
 </div>
-    </div>
+    </div> -->
     
 
 </body>
 </html>
-

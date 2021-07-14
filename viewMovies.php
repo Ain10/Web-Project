@@ -13,11 +13,13 @@
     <link rel="stylesheet" href="style.css">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
 <body>
 <script src="jquery-3.6.0.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script type="application/javascript" src="scripts.js"></script>
 </script>
 <!--- Profile Picture with username --->
@@ -30,6 +32,9 @@
                 <?php echo $_SESSION['firstN']." ".$_SESSION['lastN'];?>
                 <span id="at-uname"><br><?php echo $_SESSION['username'];?></span>
             </div>
+            <input onkeyup="searchShit(event)" id="searchShit" placeholder="Type Something...">
+            <button id="searchShitButton" onclick="searchShitB()">Search</button>
+            <div id='autoC'></div>
             <button onclick="displayHistory()" id="historyButton">History</button>
             <button onclick="logout()" id="LogoutButton">Logout</button>
         </div>
@@ -74,6 +79,7 @@
         <option value="2020">2020</option>
   </select>
   <button id="resetFilter" onclick='resetFilters()'>Reset Filters</button>
+ 
 </div>
 <div id="mainDisplay" >
 
@@ -139,6 +145,7 @@
     </div>
 </div>
 <!--- Change profile picture modal --->
+
 <div id="edit-img-container">
     <div id="edit-box">
         <div id="img-box">
