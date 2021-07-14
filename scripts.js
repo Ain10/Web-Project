@@ -109,7 +109,7 @@ function register(){
             }
         };
         console.log("First Name: "+rFirst+"Last Name: "+rLast);
-        if (d.getElementById("captchaInput") == code) {
+        if (d.getElementById("captchaInput").value == code) {
             $('form').animate({
                 height: "toggle",
                 opacity: "toggle"
@@ -117,7 +117,8 @@ function register(){
     
             xhr.open("GET","register.php?registerUser="+rUser+"&firstN="+rFirst+
             "&lastN="+rLast+"&pass="+password,true);
-        } else {		
+        } else {
+           
             Swal.fire({
                 icon:'error',
                 title:'Captcha Invalid',
@@ -135,14 +136,14 @@ function register(){
     
 }
 
-$(document).ready(function() {
-	$('.regis a').on('click', function() {
-		$('form').animate({
-			height: "toggle",
-			opacity: "toggle"
-		}, "fast");
-	});
-	});
+// $(document).ready(function() {
+// 	$('.regis a').on('click', function() {
+// 		$('form').animate({
+// 			height: "toggle",
+// 			opacity: "toggle"
+// 		}, "fast");
+// 	});
+// 	});
 
 function showRegister(){
     d.getElementById("register").style.display = "block";
@@ -153,7 +154,7 @@ function showRegister(){
     d.getElementById("registerPassword").value = "";
     d.getElementById("registerConfirmPassword").value = "";
         //added captcha dito
-        d.getElementById("captchaInput").value = "";
+        //d.getElementById("captchaInput").value = "";
 }
 function hide(){
     d.getElementById("register").style.display = "none";
@@ -163,7 +164,7 @@ function hide(){
     d.getElementById("registerLastName").value = "";
     d.getElementById("registerPassword").value = "";
     d.getElementById("registerConfirmPassword").value = "";
-    d.getElementById("captchaInput").value = "";
+   // d.getElementById("captchaInput").value = "";
 }
 
 
