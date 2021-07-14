@@ -28,20 +28,6 @@ function createCaptcha(){
 	document.getElementById("captcha").appendChild(captchaCont);
 }
 
-function validateCaptcha(){
-    if (d.getElementById("captchaInput") == code) {
-        //success captcha
-    } else {		
-        Swal.fire({
-            icon:'error',
-            title:'Captcha Invalid',
-            text: 'Please try again.'
-        });
-        createCaptcha();
-        document.getElementById("captchaInput").value="";
-    }
-}
-
 function login(){
     
     username = d.getElementById('username').value;
